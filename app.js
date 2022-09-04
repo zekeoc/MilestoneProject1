@@ -101,11 +101,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ]
 
-
-boop = cardsList.sort( () => 0.5 - Math.random() );
+//randomizing card set (will need to come back to this to tweak)
+cardsList.sort( () => Math.random() );
 
 //creating grid
 const grid = document.querySelector('.gameGrid')
+
+//
+const movesCount = document.querySelector('.moves');
+
+var moves2 = 0;
+moves.textContent = moves2;
+
+// creating chosen cards var
+var chosenCards = [];
+var chosenCardsIds = [];
 
 
 
@@ -125,7 +135,7 @@ function getBoard(){
 getBoard();
 
 
-console.log(boop)
+
 
 
 
