@@ -1,5 +1,9 @@
 /* style board first then */
 
+*{
+    font-family: 'Retroica', sans-serif;
+}
+
 html{
     width:100%;
     height: 100vh;
@@ -15,7 +19,7 @@ h1{
 .container{
     font-family: 'Retroica', sans-serif;
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -26,13 +30,32 @@ h1{
     color: red;
     justify-content: center;
     font-weight: 100;
-    font-size: 60em;
+    font-size:2em;
+    border: 2px solid red;
+    padding: 3px;
 }
-.button{
+/* .button{
     font-family: 'Retroica', sans-serif;
-    font-weight: 200;
+    font-weight: 1000;
     width: 200px;
     height: 20;
-    color:
+    color:brown;
 
 }
+*/
+.boardcanvas{
+    position: relative;
+}
+
+.board, .win{
+    color: black;
+    border-radius: 20px;
+    padding: 10px;
+}
+.head{
+    border-radius: 20px;
+    padding: 3px;
+    background: white;
+    
+}
+/* come back to css after starting js */
