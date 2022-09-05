@@ -117,8 +117,6 @@ moves.textContent = moves2;
 var chosenCards = [];
 var chosenCardsIds = [];
 
-
-
 /* initiating board, func loops over all cards in li
 adds an image to all cards then appends to grid */
 
@@ -131,9 +129,26 @@ function getBoard(){
         grid.appendChild(card);
     }
 }
+// getBoard();
 
-getBoard();
+// creating flip card function 
 
+function flipCard(){
+    if(chosenCards.length != 2){
+        var cardid = this.getAttribute('data-id');
+        if (this.getAttribute('src') != 'cards.png/blankcard.png'){
+            chosenCards.push(cardsList[cardId].name);
+            chosenCardsIds.push(cardId);
+            this.setAttribute('src', cardsList[CardId].image);
+            if(chosenCards.length == 2){
+                setTimeout(checkForMatch, 500)
+            }
+        }
+    }
+}
+
+/* create match check function that checks for card ID equivalence then 
+assigns either blank img (for match) or placeholder image (if incorrect guess- flip back over)
 
 
 
