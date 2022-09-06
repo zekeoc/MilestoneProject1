@@ -2,6 +2,9 @@
 
 *{
     font-family: 'Retroica', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
 }
 
 html{
@@ -9,34 +12,56 @@ html{
     height: 100vh;
     background: lightyellow;
 }
-.boardCanvas{
+/*
+ .boardCanvas{
     display: flex;
     flex-wrap: wrap;
     height: 500px;
-    width: 200%;
+    width: 100%;
     border: 1px solid black;
     position: absolute;
+    margin: 0 auto;
 }
 .boardCanvas img{
     height: 100px;
     width: 100px;
     border-radius: 8px;
 }
+*/
 h1{
     color: black;
     text-shadow: yellow;
     opacity: 0.7;
     text-align: center;
-    font-size: 45px;
+    font-size: 3em;
+    font-weight: 500;
+}
+.card{
+    height: 110px;
+    width: 90px;
+    border-radius: 10px;
+    background-color: aqua;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2em;
+}
+.card img{
+    width:80%;
+    height: 90px;
+    max-height: 90px;
 }
 .container{
-    font-family: 'Retroica', sans-serif;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
 }
-.mainhud{
+
+.moves{
     display: flex;
     gap: 50px;
     margin-bottom: 10px;
@@ -47,7 +72,8 @@ h1{
     border: 2px solid red;
     padding: 3px;
 }
-/* .button{
+/*
+ .button{
     font-family: 'Retroica', sans-serif;
     font-weight: 1000;
     width: 200px;
@@ -55,7 +81,7 @@ h1{
     color:brown;
 
 }
-*/
+
 .board, .win{
     color: black;
     border-radius: 20px;
@@ -67,4 +93,5 @@ h1{
     background: white;
     
 }
+*/
 /* come back to css after starting js */

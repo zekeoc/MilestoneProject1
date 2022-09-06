@@ -1,6 +1,6 @@
 //reminder
 //element.addEventListener(event, function, useCapture);
-//load html content
+//load html content before js to prevent bugs
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -9,124 +9,125 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardsList = [
         {
             name: 'blastoise',
-            image: 'cards.jpg/blastoise.jpg'
+            image: 'cardsimg/blastoise.jpg'
         },
         {
             name: 'blastoise',
-            image: 'cards.jpg/blastoise.jpg'
+            image: 'cardsimg/blastoise.jpg'
         },
         {
             name: 'charizard',
-            image: 'cards.jpg/charizard.jpg'
+            image: 'cardsimg/charizard.jpg'
         },
         {
             name: 'charizard',
-            image: 'cards.jpg/charizard.jpg'
+            image: 'cardsimg/charizard.jpg'
         },
         {
             name: 'groudon',
-            image: 'cards.jpg/groudon.jpg'
+            image: 'cardsimg/groudon.jpg'
         },
         {
             name: 'groudon',
-            image: 'cards.jpg/groudon.jpg'
+            image: 'cardsimg/groudon.jpg'
         },
         {
             name: 'mew',
-            image: 'cards.jpg/mew.jpg'
+            image: 'cardsimg/mew.jpg'
         },
         {
             name: 'mew',
-            image: 'cards.jpg/mew.jpg'
+            image: 'cardsimg/mew.jpg'
         },
         {
             name: 'mewtwo',
-            image: 'cards.jpg/mewtwo.jpg'
+            image: 'cardsimg/mewtwo.jpg'
         },
         {
             name: 'mewtwo',
-            image: 'cards.jpg/mewtwo.jpg'
+            image: 'cardsimg/mewtwo.jpg'
         },
         {
             name: 'oak',
-            image: 'cards.jpg/oak.jpg'
+            image: 'cardsimg/oak.jpg'
         },
         {
             name: 'oak',
-            image: 'cards.jpg/oak.jpg'
+            image: 'cardsimg/oak.jpg'
         },
         {
             name: 'pikachu',
-            image: 'cards.jpg/pikachu.jpg'
+            image: 'cardsimg/pikachu.jpg'
         },
         {
             name: 'pikachu',
-            image: 'cards.jpg/pikachu.jpg'
+            image: 'cardsimg/pikachu.jpg'
         },
         {
             name: 'teamrocket',
-            image: 'cards.jpg/teamrocket.jpg'
+            image: 'cardsimg/teamrocket.jpg'
         },
         {
             name: 'teamrocket',
-            image: 'cards.jpg/teamrocket.jpg'
+            image: 'cardsimg/teamrocket.jpg'
         },
         {
             name: 'umbreon',
-            image: 'cards.jpg/umbreon.jpg'
+            image: 'cardsimg/umbreon.jpg'
         },
         {
             name: 'umbreon',
-            image: 'cards.jpg/umbreon.jpg'
+            image: 'cardsimg/umbreon.jpg'
         },
         {
             name: 'venasaur',
-            image: 'cards.jpg/venasaure.jpg'
+            image: 'cardsimg/venasaure.jpg'
         },
         {
             name: 'venasaur',
-            image: 'cards.jpg/venasaure.jpg'
+            image: 'cardsimg/venasaure.jpg'
         },
         {
             name: 'blankcard',
-            image: 'cards.jpg/blankcard.png'
+            image: 'cardsimg/blankcard.png'
         },
         {
             name: 'blankcard',
-            image: 'cards.jpg/blankcard.png'
+            image: 'cardsimg/blankcard.png'
         },
         {
             name: 'placeholder',
-            image: 'cards.jpg/placeholder.jpg'
+            image: 'cardsimg/placeholder.jpg'
         }
-    ]
+    ];
 
 //randomizing card set (will need to come back to this to tweak)
 cardsList.sort( () => Math.random() );
 
-//creating grid
-const grid = document.querySelector('.gameGrid')
+//creating canvas
+const canvas = document.querySelector('.boardCanvas');
 
 //
-const movesCount = document.querySelector('.moves');
+const movesCount = document.querySelector('.movesCount');
 
-var moves2 = 0;
-moves.textContent = moves2;
+
+var moves = 0;
+movesCount.textContent = moves;
 
 // creating chosen cards var
 var chosenCards = [];
 var chosenCardsIds = [];
 
 /* initiating board, func loops over all cards in li
-adds an image to all cards then appends to grid */
+adds an image to all cards then appends to canvas */
 
 function getBoard(){
-    for (var i =0; i< cardsList; i++){
+    for (var i = 0; i < cardsList.length; i++){
         var card = document.createElement('img');
-        card.setAttribute('src', 'cards.jpg/placeholder.jpg')
+        card.setAttribute('src', 'cardsimg/placeholder.jpg');
         card.setAttribute('data-id', i);
-        card.addEventListener('click', flipCard)
-        grid.appendChild(card);
+        card.addEventListener('click', flipCard);
+        canvas.appendChild(card);
     }
 }
 // getBoard();
@@ -135,13 +136,13 @@ function getBoard(){
 
 function flipCard(){
     if(chosenCards.length != 2){
-        var cardid = this.getAttribute('data-id');
-        if (this.getAttribute('src') != 'cards.png/blankcard.png'){
+        var cardId = this.getAttribute('data-id');
+        if (this.getAttribute('src') != 'cardsimg/blankcard.png'){
             chosenCards.push(cardsList[cardId].name);
             chosenCardsIds.push(cardId);
-            this.setAttribute('src', cardsList[CardId].image);
+            this.setAttribute('src', cardsList[cardId].image);
             if(chosenCards.length == 2){
-                setTimeout(checkForMatch, 500)
+                setTimeout(checkMatch, 500)
             }
         }
     }
@@ -149,13 +150,29 @@ function flipCard(){
 
 /* create match check function that checks for card ID equivalence then 
 assigns either blank img (for match) or placeholder image (if incorrect guess- flip back over)
+*/
+
+function checkMatch(){
+    moves++;
+    var cards = document.querySelectorAll('img');
+    var firstCard = chosenCardsIds[0];
+    var secondCard = chosenCards[1];
+    if(chosenCards[0] === chosenCards[1]){
+        cards[firstCard].setAttribute('src', 'cardsimg/blankcard.png');
+        cards[secondCard].setAttribute('src', 'cardsimg/blankcard.png');
+    }else{
+        cards[firstCard].setAttribute('src', 'cardsimg/placeholder.jpg');
+        cards[secondCard].setAttribute('src', 'cardsimg/placeholder.jpg');
+    }
+    chosenCards = [];
+    chosenCardsIds = [];
+    movesCount.textContent = moves
+}
 
 
 
 
-
-
-
+getBoard();
 
 
 
